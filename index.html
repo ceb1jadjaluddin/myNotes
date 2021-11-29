@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADJALUDDIN's NOTE</title>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+    <script src="js/1.12.1.jquery-ui.js"></script>
+    <script src="js/Mynotes.js"></script>
+    
+</head>
+<body onload="ALLDATAloader();" style="font-size: 10px;">
+   <div class="container-fluid" style="margin-top: 10px;">
+        <div class="row">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="padding-left: 12px;">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true" style="width:100px; font-size: 10px;">INSERT HERE</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false" style="width:100px; font-size: 10px;">VIEW HERE</button>
+                </li>
+            </ul> 
+        </div>
+
+        <div class="row">
+            <div class="tab-content" id="pills-tabContent" style="margin-top: 25px;">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"> 
+                    <h1>My Notes</h1>
+                    <form action="savenotes.php" method="post">
+                            <div class="input-group mb-3" style="width: 500px;">
+                            <span class="input-group-text" id="basic-addon1" style="width: 120px;">Title/Name</span>
+                            <input type="text" name="title" class="form-control" placeholder="type here..." aria-label="Username" aria-describedby="basic-addon1" required>
+                            </div>
+                            
+                            <div class="input-group" style="width: 500px;">
+                            <span class="input-group-text" style="width: 120px;">Description : </span>
+                            <textarea class="form-control" name="description" placeholder="type here..." aria-label="With textarea" required></textarea>
+                            </div>
+                            <br> 
+                            <div class="input-group" style="width: 500px;">
+                            <span class="input-group-text" style="width: 120px;">Other info : </span>
+                            <textarea class="form-control" name="otherinfo" placeholder="type here..." aria-label="With textarea" required></textarea>
+                            </div>
+                            <br>
+                            <button class="btn btn-primary btn-lg" style="width: 500px;" type="submit">SAVE</button>
+                     </form>
+                </div>
+                
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">      
+                  <table id="tblnotes" class="display nowrap" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th>NotesID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Other information</th>
+                            <th></th>
+                        </tr>
+                      </thead>
+                  </table> 
+                </div>
+            </div>
+        </div>
+   </div>
+
+   <!-- Modal for update-->
+   <div class="modal fade" id="updatemodal" tabindex="-1" aria-labelledby="updatemodal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <div class="modal-body">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"> 
+              <form action="updatenotes.php" method="post">
+                      <div class="input-group mb-3" style="width: 460px;">
+                      <span class="input-group-text" id="basic-addon1" style="width: 120px;">NotesID</span>
+                      <input type="text" id='notesid' name="notesid" class="form-control" aria-label="Username" aria-describedby="basic-addon1" readonly>
+                      </div>
+
+                      <div class="input-group mb-3" style="width: 460px;">
+                      <span class="input-group-text" id="basic-addon1" style="width: 120px;">Title/Name</span>
+                      <input type="text" id='title' name="title" class="form-control" placeholder="type here..." aria-label="Username" aria-describedby="basic-addon1" required>
+                      </div>
+                      
+                      <div class="input-group" style="width: 460px;">
+                      <span class="input-group-text" style="width: 120px;">Description : </span>
+                      <textarea class="form-control" id='description' name="description" placeholder="type here..." aria-label="With textarea" required></textarea>
+                      </div>
+                      <br> 
+                      <div class="input-group" style="width: 460px;">
+                      <span class="input-group-text" style="width: 120px;">Other info : </span>
+                      <textarea class="form-control" id='otherinfo' name="otherinfo" placeholder="type here..." aria-label="With textarea" required></textarea>
+                      </div>
+                      <br>
+                      <button class="btn btn-primary btn-lg" style="width: 460px;" type="submit">UPDATE</button>
+               </form>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
