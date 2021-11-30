@@ -40,27 +40,30 @@
         </div>
 
         <div class="row">
-            <div class="tab-content" id="pills-tabContent" style="margin-top: 25px;">
+           
+              <div class="tab-content" id="pills-tabContent" style="margin-top: 25px;">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"> 
-                    <h1>My Notes</h1>
-                    <form action="savenotes.php" method="post">
-                            <div class="input-group mb-3" style="width: 500px;">
-                            <span class="input-group-text" id="basic-addon1" style="width: 120px;">Title/Name</span>
-                            <input type="text" name="title" class="form-control" placeholder="type here..." aria-label="Username" aria-describedby="basic-addon1" required>
-                            </div>
-                            
-                            <div class="input-group" style="width: 500px;">
-                            <span class="input-group-text" style="width: 120px;">Description : </span>
-                            <textarea class="form-control" name="description" placeholder="type here..." aria-label="With textarea" required></textarea>
-                            </div>
-                            <br> 
-                            <div class="input-group" style="width: 500px;">
-                            <span class="input-group-text" style="width: 120px;">Other info : </span>
-                            <textarea class="form-control" name="otherinfo" placeholder="type here..." aria-label="With textarea" required></textarea>
-                            </div>
-                            <br>
-                            <button class="btn btn-primary btn-lg" style="width: 500px;" type="submit">SAVE</button>
-                     </form>
+                    <center><h1>My Notes</h1></center>
+                    <div style="width: 50%; height: auto; margin: 0 auto; padding: 10px; position: relative;">
+                      <form action="savenotes.php" method="post">
+                              <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1" style="width: 120px;">Title/Name</span>
+                                <input type="text" name="title" class="form-control" placeholder="type here..." aria-label="Username" aria-describedby="basic-addon1" required>
+                              </div>
+                              
+                              <div class="input-group">
+                                <span class="input-group-text" style="width: 120px;">Description : </span>
+                                <textarea class="form-control" name="description" placeholder="type here..." aria-label="With textarea" required></textarea>
+                              </div>
+                              <br> 
+                              <div class="input-group">
+                                <span class="input-group-text" style="width: 120px;">Other info : </span>
+                                <textarea class="form-control" name="otherinfo" placeholder="type here..." aria-label="With textarea" required></textarea>
+                              </div>
+                              <br>
+                              <button class="btn btn-primary btn-lg" type="submit" style="width: 100%;">SAVE</button>
+                      </form>
+                    </div>
                 </div>
                 
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">      
@@ -76,7 +79,7 @@
                       </thead>
                   </table> 
                 </div>
-            </div>
+              </div>
         </div>
    </div>
 
